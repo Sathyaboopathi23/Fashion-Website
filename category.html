@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fashion World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Young+Serif&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .category-menu span {
+            cursor: pointer;
+            font-size: 18px;
+            padding-bottom: 6px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .category-menu .active {
+            color: #ff5a5a;
+            border-bottom: 2px solid #ff5a5a;
+            font-weight: 600;
+        }
+
+        .filter-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgb(88, 87, 87);
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 22px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .filter-box ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        .filter-box li {
+            cursor: pointer;
+            padding: 6px 0;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .filter-box li.active {
+            background-color: #a8a6a6;
+            font-weight: 600;
+        }
+
+        .product {
+            display: none;
+        }
+
+        .product-card {
+            width: 100%;
+        }
+
+        .img-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            transition: 0.4s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .buy-btn {
+            background: #ff6f61;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .buy-btn:hover {
+            background: #ff4d3d;
+            color: #fff;
+        }
+
+        .wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px;
+            border-radius: 50%;
+            color: #ff3b3b;
+            opacity: 0;
+            transition: 0.4s ease;
+            z-index: 2;
+        }
+
+        .img-box:hover img {
+            transform: scale(1.08);
+        }
+
+        .img-box:hover .overlay {
+            opacity: 1;
+        }
+
+        .img-box:hover .wishlist {
+            opacity: 1;
+        }
+
+        .product-info {
+            padding-top: 12px;
+        }
+
+        .product-info h6 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-info small {
+            color: #777;
+        }
+
+        .price {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand fw-bold" href="#">Fashion World</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="category.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-cart fs-3" onclick="window.location.href='cart.html'" style="cursor:pointer;"></i>
+        <i class="bi bi-person fs-3" data-bs-toggle="modal"
+           data-bs-target="#welcomeModal"
+           style="cursor:pointer;"></i>
+        <button class="btn btn-dark px-4 rounded-pill" data-bs-toggle="modal"
+        data-bs-target="#loginModal">Login</button>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content login-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal">
+            </button>
+
+            <div class="modal-body text-center px-4 pb-4">
+                <h2 class="login-title">LOGIN</h2>
+                <p class="login-subtitle">
+                    How to I started lorem Ipsum dolor At?
+                </p>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+
+                <button class="btn login-btn w-100">Login</button>
+
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button class="btn social-btn w-100">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
+                    Continue with google
+                </button>
+
+                <button class="btn social-btn w-100">
+                    <i class="bi bi-apple"></i>
+                    Continue with Apple
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content welcome-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal"></button>
+
+            <div class="modal-body text-center px-4 pb-4">
+
+                <h2 class="welcome-title">Welcome to</h2>
+                <p class="welcome-brand">Luxury Fashion World</p>
+
+                <div  id="phoneBox" >
+                    <label class="form-label mt-3">Please Enter Your Mobile Number</label>
+                    <div class="mobile-input d-flex align-items-center mb-3">
+                        <i class="bi bi-telephone me-2"></i>
+
+                        <span class="country-code">+91</span>
+                        <span class="mx-2 text-muted">|</span>
+
+                        <input type="text" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Mobile number">
+                    </div>
+                </div>
+
+                <div id="emailBox" class="d-none">
+                    <label class="form-label mt-3">Please Enter Your Email</label>
+
+                    <div class="mobile-input d-flex align-items-center">
+                        <i class="bi bi-envelope me-2"></i>
+                        <input type="email" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Email address">
+                    </div>
+                </div>
+
+                <div class="toggle-text mt-2">
+                    <a href="#" id="toggleInput">Use E-Mail</a>
+                </div>
+
+                <p class="recaptcha-text mb-4">
+                    This site is protected by reCAPTCHA and the Google
+                    <u>Privacy Policy</u> and <u>Terms of Service</u> apply.
+                    On Clicking Continue, I agree to
+                    <u>Terms of Service</u> & <u>Privacy Policy</u>
+                </p>
+
+                <button class="continue-btn" onclick="window.location.href='home.html'">Continue</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="category-menu d-flex gap-4 mb-4">
+        <span class="category-item active" onclick="setCategory(this,'all')">All /</span>
+        <span class="category-item" onclick="setCategory(this,'modern')">Modern /</span>
+        <span class="category-item" onclick="setCategory(this,'traditional')">Traditional /</span>
+        <span class="category-item" onclick="setCategory(this,'modern')">Casual /</span>
+        <span class="category-item" onclick="setCategory(this,'formal')">Formal /</span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 d-none" id="sidebar">
+            <div class="filter-box">
+                <div class="mb-3">
+                    <div class="filter-title">Categories</div>
+                    <ul id="subCategory">
+                        <li class="active" onclick="setSub(this,'all')">All</li>
+                        <li onclick="setSub(this,'men')">Men</li>
+                        <li onclick="setSub(this,'women')">Women</li>
+                        <li onclick="setSub(this,'kids')">Kids</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="filter-title">Size</div>
+                    <ul id="sizeFilter">
+                        <li onclick="setSize(this,'s')">S</li>
+                        <li onclick="setSize(this,'m')">M</li>
+                        <li onclick="setSize(this,'l')">L</li>
+                        <li onclick="setSize(this,'xl')">XL</li>
+                    </ul>
+                </div>
+
+            </div>  
+        </div>
+
+        <div class="col-md-9">
+            <div class="row g-5">
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/1c301495a54154d807207920a252bc4c1e9372e8.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/0d3140b0edc340eb880a55ea0570bb2f545a4200.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>saree</h6>
+                                <span class="price">$2000</span>
+                            </div>
+                            <small>Traditional Wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/038340f3a0475542cc4b44f7632a374aa851a3f4.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/40ae5bed2679ec4d31c9d10053fc9068d0747b77.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Kurti</h6>
+                                <span class="price">$500</span>
+                            </div>
+                            <small>Festival wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/0d3140b0edc340eb880a55ea0570bb2f545a4200.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>saree</h6>
+                                <span class="price">$2000</span>
+                            </div>
+                            <small>Traditional Wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/2dd9f17e3a988565599d267d21c1924d6377765f.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="#" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Shoot</h6>
+                                <span class="price">$1000</span>
+                            </div>
+                            <small>Formal Wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/40ae5bed2679ec4d31c9d10053fc9068d0747b77.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Kurti</h6>
+                                <span class="price">$500</span>
+                            </div>
+                            <small>Festival wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/1c301495a54154d807207920a252bc4c1e9372e8.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/86896b99a3d30eeea6121fc80b6385d80e30799e.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/1c301495a54154d807207920a252bc4c1e9372e8.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/1c301495a54154d807207920a252bc4c1e9372e8.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/86896b99a3d30eeea6121fc80b6385d80e30799e.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/fbe68acfc37e8e69061739c323219456c5170147.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/fbe68acfc37e8e69061739c323219456c5170147.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/9a20b8a8596ffa26eadc617c9fad0378337088e0.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/90749f8ff48a5f1cd6602335a27dc70895907941.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/a56878de7c9e110ee5b904ae2d5f728151430f30.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/949818d454d3cbd43612a20ba16bd68d2374198b.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/ee82dfd69688ca71346112b49fdf09f4fa57785b.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/35591e53c31d066b95c0c1948e317db0d50f856a.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/ee82dfd69688ca71346112b49fdf09f4fa57785b.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/0518b9d4ffeb5b771ce42d7730f5993d90fdb4ce.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/35591e53c31d066b95c0c1948e317db0d50f856a.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/8ae2f7c909da1c1cbd55fd6e0e9e3d308f6ca35b.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/e17c69e93497f6dbc2d8e3af16d9e33e3afa8574.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/a815b675d197299dd88696e5ae1945bba817686a.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/a815b675d197299dd88696e5ae1945bba817686a.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/2dfbe8383c6c8f950939aa65a5683abea2c5da8a.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/2883eba0731fb45494b8ec1984a57ef913a2c6bb.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/2883eba0731fb45494b8ec1984a57ef913a2c6bb.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/33f0b7dc7822f2be37ce6ad11bfd6f1a1a1d4ec6.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product modern kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/7d95afebc46a43f73475a74cdf42e6ba8f00d572.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/d12fc5023ee182bfa3703f008a8a81c1963cc8f3.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2835.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2833.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2834.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2834.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/d12fc5023ee182bfa3703f008a8a81c1963cc8f3.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2833.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2834.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2835.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirt & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2837.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Saree</h6>
+                                <span class="price">$2000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2838.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Kurta</h6>
+                                <span class="price">$1000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2838.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Kurta</h6>
+                                <span class="price">$1000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2839.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Saree</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2840.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Salwar</h6>
+                                <span class="price">$1000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2839.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Saree</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2837.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Saree</h6>
+                                <span class="price">$2000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2840.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Salwar</h6>
+                                <span class="price">$1000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2837.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>Saree</h6>
+                                <span class="price">$2000</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2841.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2842.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2842.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2843.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2844.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2843.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2845.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2845.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product traditional kids">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2846.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/e71f919828c9b1e64a0c76bac70f8b2acc147b8f.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/e71f919828c9b1e64a0c76bac70f8b2acc147b8f.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2847.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2848.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2848.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2849.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2850.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2850.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2847.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal men">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2849.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2851.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2851.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images//577e2dc43626b62a41dfd2d8aae0efbd52a4ee54.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2852.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2853.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2855.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2854.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2854.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2855.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/Frame 2852.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 product formal women">
+                    <div class="product-card">
+                        <div class="img-box">
+                            <img src="images/577e2dc43626b62a41dfd2d8aae0efbd52a4ee54.jpg" alt="product">
+
+                            <span class="wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </span>
+
+                            <div class="overlay">
+                                <a href="productDetail.html" class="btn buy-btn">Buy Now</a>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="d-flex justify-content-between">
+                                <h6>T-Shirts & Jean</h6>
+                                <span class="price">$800</span>
+                            </div>
+                            <small>Casual wear</small>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-3 text-center">
+    <button class="btn buy-btn px-4"
+    onclick="window.location.href='home.html'">
+        <i class="bi bi-arrow-left"></i> Back
+    </button>
+</div>
+
+<script>
+    let currentCategory = "all";
+    let currentSub = "all";
+    let currentSize = "all";
+
+    function setCategory(el, category) {
+
+        document.querySelectorAll(".category-item")
+            .forEach(i => i.classList.remove("active"));
+        el.classList.add("active");
+
+        currentCategory = category;
+        currentSub = "all";
+        currentSize = "all";
+
+        document.querySelectorAll("#subCategory li")
+            .forEach(i => i.classList.remove("active"));
+        document.querySelector("#subCategory li:first-child")
+            ?.classList.add("active");
+
+        document.querySelectorAll("#sizeFilter li")
+            .forEach(i => i.classList.remove("active"));
+
+        if (category === "all") {
+            document.getElementById("sidebar").classList.add("d-none");
+            document.querySelectorAll(".product")
+            .forEach(p => p.style.display = "block");
+            return;
+        }
+
+        document.getElementById("sidebar").classList.remove("d-none");
+        filterProducts();
+    }
+
+    function setSub(el, sub) {
+        document.querySelectorAll("#subCategory li")
+            .forEach(i => i.classList.remove("active"));
+        el.classList.add("active");
+
+        currentSub = sub;
+        filterProducts();
+    }
+
+    function setSize(el, size) {
+        document.querySelectorAll("#sizeFilter li")
+            .forEach(i => i.classList.remove("active"));
+        el.classList.add("active");
+
+        currentSize = size;
+        filterProducts();
+    }
+
+    function filterProducts() {
+        document.querySelectorAll(".product").forEach(p => {
+
+            let catMatch = currentCategory === "all" || p.classList.contains(currentCategory);
+            let subMatch = currentSub === "all" || p.classList.contains(currentSub);
+            let sizeMatch = currentSize === "all" || p.classList.contains(currentSize);
+
+            p.style.display = (catMatch && subMatch && sizeMatch)
+            ? "block"
+            : "none";
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".product").forEach(p => {
+            p.style.display = "block";
+        });
+    });
+
+    const toggleLink = document.getElementById("toggleInput");
+    const phoneBox = document.getElementById("phoneBox");
+    const emailBox = document.getElementById("emailBox");
+
+    toggleLink.addEventListener("click", function(e){
+        e.preventDefault();
+
+        if(phoneBox.classList.contains("d-none")){
+            phoneBox.classList.remove("d-none");
+            emailBox.classList.add("d-none");
+            toggleLink.innerText = "Use E-Mail";
+        }else{
+            phoneBox.classList.add("d-none");
+            emailBox.classList.remove("d-none");
+            toggleLink.innerText = "Use Phone Number";
+        }
+    });
+</script>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="footer-brand">LUXE.</h5>
+                <p class="footer-text">
+                    Premium fashion for the modern connoisseur.
+                    Elevate your style with our curated collections.
+                </p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Shop</h6>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Help</h6>
+                <ul>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>About</h6>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Corporate Responsibility</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

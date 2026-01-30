@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fashion World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Young+Serif&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-section {
+            padding-top: 80px;
+        }
+
+        .hero-text h1 {
+            font-family: 'Young Serif', serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: #777;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            margin: 20px 0;
+            color: #aaa;
+            font-size: 22px;
+        }
+
+        .shopbtn{
+            background-color: #FF6F61;
+            color: white;
+            font-size: 22px;
+        }
+
+        .image-group {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .image-group img {
+            width: 200px;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .image-group img:nth-child(1) {
+            margin-top: 60px;
+        }
+        .image-group img:nth-child(2) {
+            margin-top: 10px;
+        }
+
+        .image-group img:nth-child(3) {
+            margin-top: 90px;
+        }
+
+        .image-group img:nth-child(4) {
+            margin-top: 30px;
+        }
+
+        .category-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .text-strip {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 14px 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.2);
+        }
+
+        .category-card:hover .text-strip {
+            opacity: 0;
+        }
+
+        .offer-banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url("images/Rectangle\ 178.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .offer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .offer-banner h1 {
+            position: relative;
+            font-size: 72px;
+            font-weight: 700;
+            color: #4a1d1d;
+            letter-spacing: 2px;
+        }
+
+        .product-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.15),
+                transparent
+            );
+            color: #000;
+        }
+
+        .card-overlay h5 {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .card-overlay p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #2b2b2b;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rating {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .buy-btn {
+            background: #ff6f61;
+            color: #fff;
+            border-radius: 10px;
+            padding: 6px 14px;
+            font-size: 14px;
+        }
+
+        .buy-btn:hover {
+            background: #ff5646;
+            color: #fff;
+        }
+
+        .newsletter {
+            padding: 70px 15px;
+        }
+
+        .newsletter h2 {
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .newsletter p {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            max-width: 520px;
+            margin: auto;
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-right: none;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #ff6f61;
+            border: none;
+            padding: 0 30px;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand fw-bold" href="#">Fashion World</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="category.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-cart fs-3" onclick="window.location.href='cart.html'" style="cursor:pointer;"></i>
+        <i class="bi bi-person fs-3" data-bs-toggle="modal"
+           data-bs-target="#welcomeModal"
+           style="cursor:pointer;"></i>
+        <button class="btn btn-dark px-4 rounded-pill" data-bs-toggle="modal"
+        data-bs-target="#loginModal">Login</button>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content login-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal">
+            </button>
+
+            <div class="modal-body text-center px-4 pb-4">
+                <h2 class="login-title">LOGIN</h2>
+                <p class="login-subtitle">
+                    How to I started lorem Ipsum dolor At?
+                </p>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+
+                <button class="btn login-btn w-100">Login</button>
+
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button class="btn social-btn w-100">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
+                    Continue with google
+                </button>
+
+                <button class="btn social-btn w-100">
+                    <i class="bi bi-apple"></i>
+                    Continue with Apple
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content welcome-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal"></button>
+
+            <div class="modal-body text-center px-4 pb-4">
+
+                <h2 class="welcome-title">Welcome to</h2>
+                <p class="welcome-brand">Luxury Fashion World</p>
+
+                <div  id="phoneBox" >
+                    <label class="form-label mt-3">Please Enter Your Mobile Number</label>
+                    <div class="mobile-input d-flex align-items-center mb-3">
+                        <i class="bi bi-telephone me-2"></i>
+
+                        <span class="country-code">+91</span>
+                        <span class="mx-2 text-muted">|</span>
+
+                        <input type="text" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Mobile number">
+                    </div>
+                </div>
+
+                <div id="emailBox" class="d-none">
+                    <label class="form-label mt-3">Please Enter Your Email</label>
+
+                    <div class="mobile-input d-flex align-items-center">
+                        <i class="bi bi-envelope me-2"></i>
+                        <input type="email" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Email address">
+                    </div>
+                </div>
+
+                <div class="toggle-text mt-2">
+                    <a href="#" id="toggleInput">Use E-Mail</a>
+                </div>
+
+                <p class="recaptcha-text mb-4">
+                    This site is protected by reCAPTCHA and the Google
+                    <u>Privacy Policy</u> and <u>Terms of Service</u> apply.
+                    On Clicking Continue, I agree to
+                    <u>Terms of Service</u> & <u>Privacy Policy</u>
+                </p>
+
+                <button class="continue-btn" onclick="window.location.href='home.html'">Continue</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const toggleLink = document.getElementById("toggleInput");
+    const phoneBox = document.getElementById("phoneBox");
+    const emailBox = document.getElementById("emailBox");
+
+    toggleLink.addEventListener("click", function(e){
+        e.preventDefault();
+
+        if(phoneBox.classList.contains("d-none")){
+            phoneBox.classList.remove("d-none");
+            emailBox.classList.add("d-none");
+            toggleLink.innerText = "Use E-Mail";
+        }else{
+            phoneBox.classList.add("d-none");
+            emailBox.classList.remove("d-none");
+            toggleLink.innerText = "Use Phone Number";
+        }
+    });
+</script>
+
+<section class="container-fluid hero-section px-5">
+    <div class="row">
+        <div class="col-lg-5 hero-text">
+            <h1>Elevate Your Style This Season</h1>
+            <p>
+                Discover our new collection of premium fashion pieces
+                designed for the modern connoisseur.
+            </p>
+            <a href="#" class="btn shopbtn rounded-pill px-4 py-2">Go To Shop</a>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="image-group">
+                <img src="images/0a16496635b28290d38e03766a6ed628d3629c3e.jpg" alt="img1">
+                <img src="images/a7981d948fa9e88ae603a9f70f0eb6702d6f415c.jpg" alt="img2">
+                <img src="images/7d753d966a2002c5fd93b03041a91dac2142d21f.jpg" alt="img3">
+                <img src="images/3ab8642f0871e35f9ff1929d41d910ebb2c94766.jpg" alt="img4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="category-section">
+    <div class="container-fluid text-center">
+        <div style="background-color:#f7f7f7;padding: 15px;" >
+            <h2 class="section-title">Shop By Category</h2>
+        <p class="section-subtitle">Curated collections for every occasion</p>
+        </div>
+        
+        <div class="row mt-5 g-4">
+            <div class="col-md-3">
+                <div class="category-card" onclick="window.location.href='category.html'">
+                    <img src="images/d4469f3e36498f9388f424226fdc540611d11339.jpg">
+                    <div class="text-strip">Modern</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-card" onclick="window.location.href='category.html'">
+                    <img src="images/a47ae9da7e1a0e890c47158cc7d958c697730328.jpg">
+                    <div class="text-strip">Casual</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-card" onclick="window.location.href='category.html'">
+                    <img src="images/0ba47860bcce7de0a59718954aa0900ae2735d9d.jpg">
+                    <div class="text-strip">Traditional</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-card" onclick="window.location.href='category.html'">
+                    <img src="images/577e2dc43626b62a41dfd2d8aae0efbd52a4ee54.jpg">
+                    <div class="text-strip">Formal</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="offer-banner">
+    <div class="offer-overlay"></div>
+    <h1>50% OFF</h1>
+</section>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="product-card">
+                <img src="images/b8c4ae9dd6661b038a3555c50948ec6d8151daba.jpg" alt="image 1">
+                <div class="card-overlay">
+                    <h5>T - Shirt <span>$250</span></h5>
+                    <p>Cotton Cloths for Summer</p>
+                    <div class="card-bottom">
+                        <div class="rating">4 ⭐</div>
+                        <button class="btn buy-btn" onclick="window.location.href='checkOut.html'">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="product-card">
+                <img src="images/7288c1cbe72cb70f2d601c21dc756bdd38960b74.jpg" alt="image 2">
+                <div class="card-overlay">
+                    <h5>Scout <span>$250</span></h5>
+                    <p>Cotton Cloths for Summer</p>
+                    <div class="card-bottom">
+                        <div class="rating">4 ⭐</div>
+                        <button class="btn buy-btn" onclick="window.location.href='checkOut.html'">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="product-card">
+                <img src="images/af7d500735b570888d234f4edf047e2470169f77.jpg" alt="image 3">
+                <div class="card-overlay">
+                    <h5>Gown <span>$250</span></h5>
+                    <p>Cotton Cloths for Summer</p>
+                    <div class="card-bottom">
+                        <div class="rating">4 ⭐</div>
+                        <button class="btn buy-btn" onclick="window.location.href='checkOut.html'">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="product-card">
+                <img src="images/e17c69e93497f6dbc2d8e3af16d9e33e3afa8574.jpg" alt="image 4">
+                <div class="card-overlay">
+                    <h5>Top <span>$250</span></h5>
+                    <p>Cotton Cloths for Summer</p>
+                    <div class="card-bottom">
+                        <div class="rating">4 ⭐</div>
+                        <button class="btn buy-btn" onclick="window.location.href='checkOut.html'">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<section class="newsletter text-center">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Be the first to know about new collections and exclusive offers</p>
+
+    <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </div>
+</section>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="footer-brand">LUXE.</h5>
+                <p class="footer-text">
+                    Premium fashion for the modern connoisseur.
+                    Elevate your style with our curated collections.
+                </p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Shop</h6>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Help</h6>
+                <ul>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>About</h6>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Corporate Responsibility</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

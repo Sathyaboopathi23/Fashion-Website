@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fashion World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Young+Serif&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-img{
+            border-radius: 18px;
+            width: 100%;
+            height: 800px;
+            object-fit: cover;
+        }
+
+        .price{
+            font-size: 36px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .size-btn{
+            border: 1.5px solid #000;
+            background: transparent;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .size-btn:hover,
+        .size-btn.active{
+            background: #000;
+            color: #fff;
+        }
+
+        .cart-btn{
+            border: 1.5px solid #000;
+            padding: 14px 40px;
+            border-radius: 14px;
+            background: #fff;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .buy-btn{
+            background: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 14px 50px;
+            border-radius: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .star{
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .avatar{
+            width: 50px;
+            height: 50px;
+            background: #d9d9d9;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand fw-bold" href="#">Fashion World</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="category.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-cart fs-3" onclick="window.location.href='cart.html'" style="cursor:pointer;"></i>
+        <i class="bi bi-person fs-3" data-bs-toggle="modal"
+           data-bs-target="#welcomeModal"
+           style="cursor:pointer;"></i>
+        <button class="btn btn-dark px-4 rounded-pill" data-bs-toggle="modal"
+        data-bs-target="#loginModal">Login</button>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content login-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal">
+            </button>
+
+            <div class="modal-body text-center px-4 pb-4">
+                <h2 class="login-title">LOGIN</h2>
+                <p class="login-subtitle">
+                    How to I started lorem Ipsum dolor At?
+                </p>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+
+                <button class="btn login-btn w-100">Login</button>
+
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button class="btn social-btn w-100">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
+                    Continue with google
+                </button>
+
+                <button class="btn social-btn w-100">
+                    <i class="bi bi-apple"></i>
+                    Continue with Apple
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content welcome-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal"></button>
+
+            <div class="modal-body text-center px-4 pb-4">
+
+                <h2 class="welcome-title">Welcome to</h2>
+                <p class="welcome-brand">Luxury Fashion World</p>
+
+                <div  id="phoneBox" >
+                    <label class="form-label mt-3">Please Enter Your Mobile Number</label>
+                    <div class="mobile-input d-flex align-items-center mb-3">
+                        <i class="bi bi-telephone me-2"></i>
+
+                        <span class="country-code">+91</span>
+                        <span class="mx-2 text-muted">|</span>
+
+                        <input type="text" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Mobile number">
+                    </div>
+                </div>
+
+                <div id="emailBox" class="d-none">
+                    <label class="form-label mt-3">Please Enter Your Email</label>
+
+                    <div class="mobile-input d-flex align-items-center">
+                        <i class="bi bi-envelope me-2"></i>
+                        <input type="email" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Email address">
+                    </div>
+                </div>
+
+                <div class="toggle-text mt-2">
+                    <a href="#" id="toggleInput">Use E-Mail</a>
+                </div>
+
+                <p class="recaptcha-text mb-4">
+                    This site is protected by reCAPTCHA and the Google
+                    <u>Privacy Policy</u> and <u>Terms of Service</u> apply.
+                    On Clicking Continue, I agree to
+                    <u>Terms of Service</u> & <u>Privacy Policy</u>
+                </p>
+
+                <button class="continue-btn" onclick="window.location.href='home.html'">Continue</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const toggleLink = document.getElementById("toggleInput");
+    const phoneBox = document.getElementById("phoneBox");
+    const emailBox = document.getElementById("emailBox");
+
+    toggleLink.addEventListener("click", function(e){
+        e.preventDefault();
+
+        if(phoneBox.classList.contains("d-none")){
+            phoneBox.classList.remove("d-none");
+            emailBox.classList.add("d-none");
+            toggleLink.innerText = "Use E-Mail";
+        }else{
+            phoneBox.classList.add("d-none");
+            emailBox.classList.remove("d-none");
+            toggleLink.innerText = "Use Phone Number";
+        }
+    });
+</script>
+
+<div class="container my-5">
+    <div class="row align-items-start g-5">
+        <div class="col-md-6">
+            <img src="images/1c301495a54154d807207920a252bc4c1e9372e8.jpg" class="product-img">
+        </div>
+
+        <div class="col-md-6">
+            <h1 class="fw-bold mt-5">T- Shirt</h1>
+            <p class="text-muted fs-5">Cotton Cloths for Summer</p>
+
+            <div class="price">$250</div>
+            <h5 class="fw-bold mt-4 mb-3">Size</h5>
+            <div class="d-flex gap-3 flex-wrap">
+                <button class="size-btn active">S</button>
+                <button class="size-btn">L</button>
+                <button class="size-btn">M</button>
+                <button class="size-btn">XL</button>
+                <button class="size-btn">XXL</button>
+            </div>
+
+            <div class="d-flex gap-4 mt-5">
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
+                    <i class="bi bi-cart me-2"></i> Add to Cart
+                </button>
+                <button class="buy-btn" onclick="window.location.href='checkOut.html'">Buy Now</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <span class="fs-2 fw-bold">4</span>
+        <span class="star">★</span>
+    </div>
+
+    <div class="mt-4">
+        <h4 class="fw-bold fs-3">Product Details</h4>
+        <p class="mt-3 fs-5">
+            The Dress was Make by Sof Cotton Cloth. the color was purple.
+            Quantity was one
+        </p>
+    </div>
+
+    <div class="mt-5">
+        <h4 class="fw-bold fs-3">Review</h4>
+
+        <div class="d-flex gap-3 mt-4">
+            <div class="avatar"></div>
+
+            <div>
+                <h6 class="fw-bold mb-2 fs-4">Maheshwari</h6>
+                <p class="mb-2 fs-5 ">
+                    This dress was totally awesome Its receive perfectly
+                </p>
+                <div>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+            <div class="avatar"></div>
+
+            <div>
+                <h6 class="fw-bold mb-2 fs-4">Maheshwari</h6>
+                <p class="mb-2 fs-5">
+                    This dress was totally awesome Its receive perfectly
+                </p>
+                <div>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="footer-brand">LUXE.</h5>
+                <p class="footer-text">
+                    Premium fashion for the modern connoisseur.
+                    Elevate your style with our curated collections.
+                </p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Shop</h6>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Help</h6>
+                <ul>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>About</h6>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Corporate Responsibility</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

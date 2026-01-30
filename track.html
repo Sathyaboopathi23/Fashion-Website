@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fashion World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Young+Serif&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-title {
+            font-weight: 700;
+            margin: 30px 0;
+        }
+
+        .tracking-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .delivery-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delivery-date {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .progress {
+            height: 6px;
+            border-radius: 6px;
+        }
+
+        .progress-bar {
+            background-color: #ff6f61;
+        }
+
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .timeline-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #ff6f61;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 14px;
+        }
+
+        .timeline-icon.inactive {
+            background: #d1d5db;
+        }
+
+        .timeline-content h6 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .help-box {
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .help-box p {
+            font-size: 13px;
+            margin: 0;
+            color: #374151;
+        }
+
+        .btn-support {
+            border: 1px solid #000;
+            background: transparent;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand fw-bold" href="#">Fashion World</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="category.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+        <i class="bi bi-cart fs-3" onclick="window.location.href='cart.html'" style="cursor:pointer;"></i>
+        <i class="bi bi-person fs-3" data-bs-toggle="modal"
+           data-bs-target="#welcomeModal"
+           style="cursor:pointer;"></i>
+        <button class="btn btn-dark px-4 rounded-pill" data-bs-toggle="modal"
+        data-bs-target="#loginModal">Login</button>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content login-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal">
+            </button>
+
+            <div class="modal-body text-center px-4 pb-4">
+                <h2 class="login-title">LOGIN</h2>
+                <p class="login-subtitle">
+                    How to I started lorem Ipsum dolor At?
+                </p>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+
+                <div class="input-group custom-input">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+
+                <button class="btn login-btn w-100">Login</button>
+
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button class="btn social-btn w-100">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
+                    Continue with google
+                </button>
+
+                <button class="btn social-btn w-100">
+                    <i class="bi bi-apple"></i>
+                    Continue with Apple
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content welcome-modal">
+            <button type="button" class="btn-close ms-auto m-3"
+                data-bs-dismiss="modal"></button>
+
+            <div class="modal-body text-center px-4 pb-4">
+
+                <h2 class="welcome-title">Welcome to</h2>
+                <p class="welcome-brand">Luxury Fashion World</p>
+
+                <div  id="phoneBox" >
+                    <label class="form-label mt-3">Please Enter Your Mobile Number</label>
+                    <div class="mobile-input d-flex align-items-center mb-3">
+                        <i class="bi bi-telephone me-2"></i>
+
+                        <span class="country-code">+91</span>
+                        <span class="mx-2 text-muted">|</span>
+
+                        <input type="text" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Mobile number">
+                    </div>
+                </div>
+
+                <div id="emailBox" class="d-none">
+                    <label class="form-label mt-3">Please Enter Your Email</label>
+
+                    <div class="mobile-input d-flex align-items-center">
+                        <i class="bi bi-envelope me-2"></i>
+                        <input type="email" class="form-control border-0 shadow-none ps-0"
+                            placeholder="Email address">
+                    </div>
+                </div>
+
+                <div class="toggle-text mt-2">
+                    <a href="#" id="toggleInput">Use E-Mail</a>
+                </div>
+
+                <p class="recaptcha-text mb-4">
+                    This site is protected by reCAPTCHA and the Google
+                    <u>Privacy Policy</u> and <u>Terms of Service</u> apply.
+                    On Clicking Continue, I agree to
+                    <u>Terms of Service</u> & <u>Privacy Policy</u>
+                </p>
+
+                <button class="continue-btn" onclick="window.location.href='home.html'">Continue</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const toggleLink = document.getElementById("toggleInput");
+    const phoneBox = document.getElementById("phoneBox");
+    const emailBox = document.getElementById("emailBox");
+
+    toggleLink.addEventListener("click", function(e){
+        e.preventDefault();
+
+        if(phoneBox.classList.contains("d-none")){
+            phoneBox.classList.remove("d-none");
+            emailBox.classList.add("d-none");
+            toggleLink.innerText = "Use E-Mail";
+        }else{
+            phoneBox.classList.add("d-none");
+            emailBox.classList.remove("d-none");
+            toggleLink.innerText = "Use Phone Number";
+        }
+    });
+</script>
+
+<div class="container my-4" style="max-width: 420px;">
+    <h4 class="text-center page-title">Order Tracking</h4>
+    <div class="tracking-card">
+        <small class="text-muted">Estimated Delivery</small>
+        <div class="delivery-box mt-2">
+            <div>
+                <small>Your order is expected to arrive by</small><br>
+                <span class="delivery-date">Thursday, July 4, 2024</span>
+            </div>
+            <i class="bi bi-truck text-danger fs-4"></i>
+        </div>
+    </div>
+
+    <div class="tracking-card">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="fw-bold">Order Status</small>
+            <small class="text-muted">70% Complete</small>
+        </div>
+
+        <div class="progress mb-4">
+            <div class="progress-bar" style="width: 70%"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+                <div class="timeline-content">
+                    <h6>Order Placed</h6>
+                    <p>We received your order on June 25, 2024.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="bi bi-gear"></i>
+                </div>
+                <div class="timeline-content">
+                    <h6>Processing</h6>
+                    <p>Your order is being prepared for shipment.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <div class="timeline-content">
+                    <h6>Shipped</h6>
+                    <p>Your package has left the warehouse.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon inactive">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="timeline-content">
+                    <h6 class="text-muted">Out for Delivery</h6>
+                    <p>Your package is on the way to your address.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon inactive">
+                    <i class="bi bi-check-lg"></i>
+                </div>
+                <div class="timeline-content">
+                    <h6 class="text-muted">Delivered</h6>
+                    <p>Your package has been delivered.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="help-box">
+        <p><strong>Need Help?</strong><br>If you have questions about your order, our support team is here.</p>
+        <button class="btn-support">
+        <i class="bi bi-headset"></i> Contact Support
+        </button>
+    </div>
+</div>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="footer-brand">LUXE.</h5>
+                <p class="footer-text">
+                    Premium fashion for the modern connoisseur.
+                    Elevate your style with our curated collections.
+                </p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Shop</h6>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>Help</h6>
+                <ul>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h6>About</h6>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Corporate Responsibility</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
